@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class UIConstansts {
+class UIConstants {
   static const double ASSUMED_SCREEN_HEIGHT = 640.0;
   static const double ASSUMED_SCREEN_WIDTH = 360.0;
 
@@ -15,4 +15,8 @@ class UIConstansts {
 
   static fitToHeight(value, BuildContext context) => _fitContext(context,
       ASSUMED_SCREEN_HEIGHT, MediaQuery.of(context).size.height, value);
+
+  static const mainColor = Color(0xfff2f3f7);
+  static const splashScreenLogo = 'assets/images/splashScreenLogo.png';
+
 }

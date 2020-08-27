@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-
-import '../constants.dart';
-import 'addDataPage.dart';
+import 'package:zero_vendor/common/ui_constants.dart';
+import 'package:zero_vendor/services/authService.dart';
+import 'package:zero_vendor/view/addDataPage.dart';
+import 'package:zero_vendor/view/homePage.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -9,185 +10,143 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String email, password;
-  Widget _buildLogo() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 70),
-          child: Text(
-            'ZERO',
-            style: TextStyle(
-              fontSize: MediaQuery.of(context).size.height / 25,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-          ),
-        )
-      ],
-    );
+  String _email;
+  String _password;
+
+  bool _logging_in = false;
+  final formkey = new GlobalKey<FormState>();
+  final scaffkey = new GlobalKey<ScaffoldState>();
+
+  checkFields() {
+    final form = formkey.currentState;
+    if (form.validate()) {
+      form.save();
+      return true;
+    }
+    setState(() {
+      _logging_in = false;
+    });
+    return false;
   }
 
-  Widget _buildEmailRow() {
-    return Padding(
-      padding: EdgeInsets.all(8),
-      child: TextFormField(
-        keyboardType: TextInputType.emailAddress,
-        onChanged: (value) {
-          setState(() {
-            email = value;
-          });
-        },
-        decoration: InputDecoration(
-            prefixIcon: Icon(
-              Icons.email,
-              color: mainColor,
-            ),
-            labelText: 'E-mail'),
-      ),
-    );
-  }
+  login() async {
+    setState(() {
+      _logging_in = true;
+    });
+    if (checkFields()) {
+      bool authenticated = await AuthService.authenticate(_email, _password);
 
-  Widget _buildPasswordRow() {
-    return Padding(
-      padding: EdgeInsets.all(8),
-      child: TextFormField(
-        keyboardType: TextInputType.text,
-        obscureText: true,
-        onChanged: (value) {
-          setState(() {
-            password = value;
-          });
-        },
-        decoration: InputDecoration(
-          prefixIcon: Icon(
-            Icons.lock,
-            color: mainColor,
-          ),
-          labelText: 'Password',
-        ),
-      ),
-    );
-  }
-
-  Widget _buildForgetPasswordButton() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        FlatButton(
-          onPressed: () {},
-          child: Text("Forgot Password"),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildLoginButton() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Container(
-          height: 1.4 * (MediaQuery.of(context).size.height / 20),
-          width: 5 * (MediaQuery.of(context).size.width / 10),
-          margin: EdgeInsets.only(bottom: 20),
-          child: RaisedButton(
-            elevation: 5.0,
-            color: mainColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0),
-            ),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => AddDataPage(data: 'Add Data')));
-            },
-            child: Text(
-              "Sign In",
-              style: TextStyle(
-                color: Colors.grey,
-                letterSpacing: 1.5,
-                fontSize: MediaQuery.of(context).size.height / 40,
-              ),
-            ),
-          ),
-        )
-      ],
-    );
-  }
-
-  Widget _buildContainer() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        ClipRRect(
-          borderRadius: BorderRadius.all(
-            Radius.circular(20),
-          ),
-          child: Container(
-            height: MediaQuery.of(context).size.height * 0.6,
-            width: MediaQuery.of(context).size.width * 0.8,
-            decoration: BoxDecoration(
-              color: Colors.white,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "SIGN IN",
-                      style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.height / 30,
-                      ),
-                    ),
-                  ],
-                ),
-                _buildEmailRow(),
-                _buildPasswordRow(),
-                _buildForgetPasswordButton(),
-                _buildLoginButton(),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
+      if (authenticated) {
+        var user = await AuthService.getSavedAuth();
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (BuildContext context) {
+          return HomePage();
+        }), (Route<dynamic> route) => false);
+      } else {
+        setState(() {
+          _logging_in = false;
+        });
+        scaffkey.currentState.showSnackBar(new SnackBar(
+          content: new Text("Authentication failure !! Please retry."),
+        ));
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomPadding: false,
-        backgroundColor: Color(0xfff2f3f7),
-        body: Stack(
-          children: <Widget>[
-            Container(
-              height: MediaQuery.of(context).size.height * 0.7,
-              width: MediaQuery.of(context).size.width,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: mainColor,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: const Radius.circular(70),
-                    bottomRight: const Radius.circular(70),
+    return Scaffold(
+        key: scaffkey,
+        body: Container(
+          height: UIConstants.fitToHeight(640, context),
+          width: UIConstants.fitToWidth(360, context),
+          decoration: BoxDecoration(color: Colors.white),
+          child: Center(
+            child: ListView(children: <Widget>[
+              SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.11,
+                  width: MediaQuery.of(context).size.width * 0.01),
+              Row(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 58.0, top: 100),
+                    child: Container(
+                      child: Text(
+                        'Log In',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                _buildLogo(),
-                _buildContainer(),
-              ],
-            )
-          ],
-        ),
+              Container(
+                height: 10.0,
+              ),
+              Container(
+                child: Padding(
+                    padding: const EdgeInsets.fromLTRB(52.0, 0.0, 52.0, 0.0),
+                    child: Form(
+                      key: formkey,
+                      child: Column(
+                        children: <Widget>[
+                          _input("Please enter Email", false, "Email", 'Email',
+                              (value) {
+                            _email = value;
+                          }),
+                          Container(
+                            height: 16.0,
+                          ),
+                          _input("Please enter password", true, "Password",
+                              'Password', (value) {
+                            _password = value;
+                          }),
+                          Container(
+                            height: 54.0,
+                          ),
+                          Container(
+                            height: UIConstants.fitToHeight(45, context),
+                            width: UIConstants.fitToWidth(116, context),
+                            child: RaisedButton(
+                              color: Color(0xff0D4971),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              onPressed: login,
+                              child: Text(
+                                'Log In',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18.0),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )),
+              )
+            ]),
+          ),
+        ));
+  }
+
+  Widget _input(String validation, bool, String label, String hint, save) {
+    return new TextFormField(
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
+        hintText: hint,
+        hintStyle: TextStyle(fontSize: 15.0, color: Colors.black),
+        //labelText: label,
+        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
+        border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+            borderRadius: BorderRadius.circular(10.0)),
       ),
+      obscureText: bool,
+      validator: (value) => value.isEmpty ? validation : null,
+      onSaved: save,
     );
   }
 }
