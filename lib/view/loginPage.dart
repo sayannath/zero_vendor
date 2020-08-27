@@ -38,10 +38,16 @@ class _LoginPageState extends State<LoginPage> {
 
       if (authenticated) {
         var user = await AuthService.getSavedAuth();
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (BuildContext context) {
-          return HomePage();
-        }), (Route<dynamic> route) => false);
+        if (user['role'] == '1') {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (BuildContext context) {
+            return HomePage();
+          }), (Route<dynamic> route) => false);
+        } else {
+          scaffkey.currentState.showSnackBar(new SnackBar(
+            content: new Text("Authentication denied !! Please retry."),
+          ));
+        }
       } else {
         setState(() {
           _logging_in = false;

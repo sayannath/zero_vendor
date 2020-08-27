@@ -25,7 +25,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void navigate() async {
     var auth = await AuthService.getSavedAuth();
 
-    print(auth == null ? 'token is null' : auth['token']);
+    print(auth == null ? 'Token is null' : auth['token']);
+    print(auth == null ? 'Token is null' : auth['role']);
 
     if (auth != null) {
       var user = await AuthService.getSavedAuth();

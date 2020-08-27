@@ -68,19 +68,19 @@ class AuthService extends BaseService {
     print(responseMap);
 
     String token = responseMap['token'];
-    var userDetails = responseMap['role'];
-    print(userDetails);
+    String role = responseMap['role'].toString();
+    print(role);
 
     bool success = token != null;
 
-    if (success) _saveToken(token, email);
+    if (success) _saveToken(token, email, role);
     return success;
   }
 
-  static _saveToken(String token, String email) async {
+  static _saveToken(String token, String email, String role) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(
-        authNamespace, json.encode({"email": email, "token": token}));
+    await prefs.setString(authNamespace,
+        json.encode({"email": email, "token": token, "role": role}));
   }
 
   static clearAuth() async {
