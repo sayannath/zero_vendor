@@ -9,10 +9,6 @@ class AddDataPage extends StatefulWidget {
   _AddDataPageState createState() => _AddDataPageState();
 }
 
-printdemo() {
-  print('hello ji');
-}
-
 class _AddDataPageState extends State<AddDataPage> {
   final formkey = new GlobalKey<FormState>();
   final scaffkey = new GlobalKey<ScaffoldState>();
@@ -30,6 +26,7 @@ class _AddDataPageState extends State<AddDataPage> {
         lat = value.latitude.toString();
         long = value.longitude.toString();
         print(lat);
+        print(long);
       });
     }).catchError((e) {
       print(e);
@@ -82,8 +79,8 @@ class _AddDataPageState extends State<AddDataPage> {
                           Container(
                             height: 16.0,
                           ),
-                          _input(phone, "Please enter Phone NO", "Phone No",
-                              'Longitude', (value) {
+                          _input(phone, "Please enter Phone Number", "Phone Number",
+                              'Phone Number', (value) {
                             long = value;
                           }, TextInputType.text),
                           Container(
@@ -124,7 +121,7 @@ class _AddDataPageState extends State<AddDataPage> {
                               ),
                               onPressed:()=> Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage())),
                               child: Text(
-                                'continue',
+                                'Continue',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 18.0),
                               ),
@@ -150,7 +147,7 @@ Widget _input(String va, String validation, String label, String hint, save,
       fillColor: Colors.white,
       hintText: hint,
       hintStyle: TextStyle(fontSize: 15.0, color: Colors.black),
-      //labelText: label,
+      labelText: label,
       contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
       border: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.black),

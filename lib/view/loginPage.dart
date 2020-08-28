@@ -38,10 +38,10 @@ class _LoginPageState extends State<LoginPage> {
 
       if (authenticated) {
         var user = await AuthService.getSavedAuth();
-        if (user['role'] == '0') {
+        if (user['role'] == '1') {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (BuildContext context) {
-            return HomePage();
+            return AddDataPage();
           }), (Route<dynamic> route) => false);
         } else {
           scaffkey.currentState.showSnackBar(new SnackBar(
@@ -144,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
         fillColor: Colors.white,
         hintText: hint,
         hintStyle: TextStyle(fontSize: 15.0, color: Colors.black),
-        //labelText: label,
+        labelText: label,
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
         border: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black),

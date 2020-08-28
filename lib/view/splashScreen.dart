@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:zero_vendor/common/ui_constants.dart';
 import 'package:zero_vendor/services/authService.dart';
+import 'package:zero_vendor/view/addDataPage.dart';
 import 'package:zero_vendor/view/homePage.dart';
 import 'package:zero_vendor/view/loginPage.dart';
 
@@ -32,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
       var user = await AuthService.getSavedAuth();
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) {
-        return HomePage();
+        return AddDataPage();
       }));
     } else {
       Navigator.of(context)
