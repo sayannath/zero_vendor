@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
 
       if (authenticated) {
         var user = await AuthService.getSavedAuth();
-        if (user['role'] == '1') {
+        if (user['role'] == '0') {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (BuildContext context) {
             return HomePage();

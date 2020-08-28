@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zero_vendor/view/addDataPage.dart';
 import 'package:zero_vendor/view/loginPage.dart';
 import 'package:zero_vendor/view/splashScreen.dart';
 
@@ -9,7 +10,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: LoginPage(),
+      // home: AddDataPage(),
     );
   }
 }
