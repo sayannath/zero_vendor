@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zero_vendor/services/authService.dart';
 import 'package:zero_vendor/view/loginPage.dart';
+import 'package:zero_vendor/view/profilePage.dart';
 
 
 
@@ -24,7 +25,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Home Page'), centerTitle: true),
+      appBar: AppBar(
+        actions: [
+          IconButton(icon: Icon(Icons.account_circle), onPressed: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+              return ProfilePage();
+            }));
+          })
+        ],
+        title: Text('Home Page'), centerTitle: true),
       body: Center(child: Text('Home Page')),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.exit_to_app),

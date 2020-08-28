@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:zero_vendor/common/ui_constants.dart';
 import 'package:zero_vendor/services/authService.dart';
 import 'package:zero_vendor/view/addDataPage.dart';
-import 'package:zero_vendor/view/homePage.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -13,7 +12,7 @@ class _LoginPageState extends State<LoginPage> {
   String _email;
   String _password;
 
-  bool _logging_in = false;
+  bool _loggingIn = false;
   final formkey = new GlobalKey<FormState>();
   final scaffkey = new GlobalKey<ScaffoldState>();
 
@@ -24,14 +23,14 @@ class _LoginPageState extends State<LoginPage> {
       return true;
     }
     setState(() {
-      _logging_in = false;
+      _loggingIn = false;
     });
     return false;
   }
 
   login() async {
     setState(() {
-      _logging_in = true;
+      _loggingIn = true;
     });
     if (checkFields()) {
       bool authenticated = await AuthService.authenticate(_email, _password);
@@ -50,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
         }
       } else {
         setState(() {
-          _logging_in = false;
+          _loggingIn = false;
         });
         scaffkey.currentState.showSnackBar(new SnackBar(
           content: new Text("Authentication failure !! Please retry."),
@@ -143,8 +142,9 @@ class _LoginPageState extends State<LoginPage> {
         filled: true,
         fillColor: Colors.white,
         hintText: hint,
-        hintStyle: TextStyle(fontSize: 15.0, color: Colors.black),
+        hintStyle: TextStyle(fontSize: 15.0, color: Colors.grey),
         labelText: label,
+        labelStyle: TextStyle(fontSize: 15, color: Colors.black),
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
         border: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black),

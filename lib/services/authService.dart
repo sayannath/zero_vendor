@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zero_vendor/services/baseService.dart';
@@ -9,6 +8,7 @@ class AuthService extends BaseService {
   static Map<String, dynamic> _authDetails;
   static const String authNamespace = "auth";
 
+  // ignore: missing_return
   static Future<http.Response> makeAuthenticatedRequest(String path,
       {String method = 'POST',
       body,
@@ -69,18 +69,23 @@ class AuthService extends BaseService {
 
     String token = responseMap['token'];
     String role = responseMap['role'].toString();
+    String userId = responseMap['_id'].toString();
     print(role);
-
+    //print(userId);
     bool success = token != null;
 
-    if (success) _saveToken(token, email, role);
+    if (success) _saveToken(token, email, role, userId);
     return success;
   }
 
-  static _saveToken(String token, String email, String role) async {
+  static _saveToken(
+      String token, String email, String role, String id) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(authNamespace,
-        json.encode({"email": email, "token": token, "role": role}));
+    await prefs.setString(
+        authNamespace,
+        json.encode(
+            {"email": email, "token": token, "role": role}));
+    prefs.setString("id", id);
   }
 
   static clearAuth() async {

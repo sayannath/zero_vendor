@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zero_vendor/view/addDataPage.dart';
-import 'package:zero_vendor/view/loginPage.dart';
 import 'package:zero_vendor/view/splashScreen.dart';
 
 void main() => runApp(MyApp());
