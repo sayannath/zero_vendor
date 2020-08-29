@@ -4,6 +4,7 @@ import 'package:zero_vendor/models/User.dart';
 import 'package:zero_vendor/services/authService.dart';
 import 'package:zero_vendor/view/loginPage.dart';
 import 'package:zero_vendor/view/profilePage.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -11,14 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  signOut() async {
-    await AuthService.clearAuth();
-
-    Navigator.of(context).pushAndRemoveUntil(
-        new MaterialPageRoute(builder: (context) {
-      return LoginPage();
-    }), (Route<dynamic> route) => false);
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -94,11 +88,7 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.exit_to_app),
-          onPressed: () {
-            signOut();
-          }),
+
     );
   }
 }
