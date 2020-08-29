@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zero_vendor/models/User.dart';
 import 'package:zero_vendor/services/baseService.dart';
 
 class AuthService extends BaseService {
@@ -51,7 +52,6 @@ class AuthService extends BaseService {
         ? json.decode(prefs.getString(authNamespace))
         : null;
     AuthService._authDetails = auth;
-    //print("User details" + auth.toString());
     print('Saved');
     return auth;
   }
@@ -71,7 +71,6 @@ class AuthService extends BaseService {
     String role = responseMap['role'].toString();
     String userId = responseMap['_id'].toString();
     print(role);
-    //print(userId);
     bool success = token != null;
 
     if (success) _saveToken(token, email, role, userId);
@@ -93,6 +92,5 @@ class AuthService extends BaseService {
     prefs.clear();
     _authDetails = null;
     print('Cleared');
-    //prefs.remove(authNamespace);
   }
 }

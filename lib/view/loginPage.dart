@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zero_vendor/common/ui_constants.dart';
+import 'package:zero_vendor/models/User.dart';
 import 'package:zero_vendor/services/authService.dart';
+import 'package:zero_vendor/services/userService.dart';
 import 'package:zero_vendor/view/addDataPage.dart';
 
 class LoginPage extends StatefulWidget {
@@ -36,8 +38,8 @@ class _LoginPageState extends State<LoginPage> {
       bool authenticated = await AuthService.authenticate(_email, _password);
 
       if (authenticated) {
-        var user = await AuthService.getSavedAuth();
-        if (user['role'] == '1') {
+        var auth = await AuthService.getSavedAuth();
+        if (auth['role'] == '1') {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (BuildContext context) {
             return AddDataPage();

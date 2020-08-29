@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:zero_vendor/common/ui_constants.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
+import 'package:zero_vendor/models/User.dart';
 import 'package:zero_vendor/services/userService.dart';
 import 'package:zero_vendor/view/homePage.dart';
 

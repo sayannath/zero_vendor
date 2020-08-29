@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zero_vendor/models/User.dart';
 import 'package:zero_vendor/services/authService.dart';
 import 'package:zero_vendor/view/loginPage.dart';
 import 'package:zero_vendor/view/profilePage.dart';

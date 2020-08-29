@@ -6,8 +6,7 @@ import 'package:zero_vendor/services/userService.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zero_vendor/view/addDataPage.dart';
-
-import '../constants.dart';
+import 'package:zero_vendor/constants.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -15,7 +14,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  String data = "";
+  Map<String, dynamic> data;
   @override
   void initState() {
     super.initState();
@@ -25,13 +24,14 @@ class _ProfilePageState extends State<ProfilePage> {
   getUserInfo() async {
     http.Response response = await UserService.getUserInfoRequest();
     print(response.body);
-    data = jsonDecode(response.body).toString();
+    data = jsonDecode(response.body);
   }
 
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, height: 896, width: 414, allowFontScaling: true);
     return Scaffold(
+      appBar: AppBar(title: Text('Profile')),
       body: Container(
         padding: EdgeInsets.all(15),
         child: ListView(
@@ -77,24 +77,27 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
+            
             SizedBox(height: kSpacingUnit.w * 2),
-            Text(
-              'Name',
-              style: kTitleTextStyle,
-            ),
+            Text('${data['name']} ${data['lastname']}', style: kTitleTextStyle),
             SizedBox(height: kSpacingUnit.w * 0.5),
             Text(
-              'user@email.com',
+              '${data['email']}',
               style: kCaptionTextStyle,
             ),
             SizedBox(height: kSpacingUnit.w * 0.5),
             Text(
-              'phone number',
+              '${data['phone']}',
               style: kCaptionTextStyle,
             ),
             SizedBox(height: kSpacingUnit.w * 0.5),
             Text(
-              'address',
+              '${data['address']}',
+              style: kCaptionTextStyle,
+            ),
+            SizedBox(height: kSpacingUnit.w * 0.5),
+            Text(
+              '${data['pincode']}',
               style: kCaptionTextStyle,
             ),
             SizedBox(height: kSpacingUnit.w * 0.5),
