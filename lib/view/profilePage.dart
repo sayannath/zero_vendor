@@ -77,6 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
+            
             SizedBox(height: kSpacingUnit.w * 2),
             Text('${data['name']} ${data['lastname']}', style: kTitleTextStyle),
             SizedBox(height: kSpacingUnit.w * 0.5),
