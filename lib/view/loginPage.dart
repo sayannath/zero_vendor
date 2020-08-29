@@ -67,71 +67,74 @@ class _LoginPageState extends State<LoginPage> {
           width: UIConstants.fitToWidth(360, context),
           decoration: BoxDecoration(color: Colors.white),
           child: Center(
-            child: ListView(children: <Widget>[
-              SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.11,
-                  width: MediaQuery.of(context).size.width * 0.01),
-              Row(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 58.0, top: 100),
-                    child: Container(
-                      child: Text(
-                        'Log In',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold),
+            child: ListView(
+              children: <Widget>[
+                SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.11,
+                    width: MediaQuery.of(context).size.width * 0.01),
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 58.0, top: 100),
+                      child: Container(
+                        child: Text(
+                          'Log In',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Container(
-                height: 10.0,
-              ),
-              Container(
-                child: Padding(
-                    padding: const EdgeInsets.fromLTRB(52.0, 0.0, 52.0, 0.0),
-                    child: Form(
-                      key: formkey,
-                      child: Column(
-                        children: <Widget>[
-                          _input("Please enter Email", false, "Email", 'Email',
-                              (value) {
-                            _email = value;
-                          }),
-                          Container(
-                            height: 16.0,
-                          ),
-                          _input("Please enter password", true, "Password",
-                              'Password', (value) {
-                            _password = value;
-                          }),
-                          Container(
-                            height: 54.0,
-                          ),
-                          Container(
-                            height: UIConstants.fitToHeight(45, context),
-                            width: UIConstants.fitToWidth(116, context),
-                            child: RaisedButton(
-                              color: Color(0xff0D4971),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              onPressed: login,
-                              child: Text(
-                                'Log In',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 18.0),
+                  ],
+                ),
+                Container(
+                  height: 10.0,
+                ),
+                Container(
+                  child: Padding(
+                      padding: const EdgeInsets.fromLTRB(52.0, 0.0, 52.0, 0.0),
+                      child: Form(
+                        key: formkey,
+                        child: Column(
+                          children: <Widget>[
+                            _input(
+                                "Please enter Email", false, "Email", 'Email',
+                                (value) {
+                              _email = value;
+                            }),
+                            Container(
+                              height: 16.0,
+                            ),
+                            _input("Please enter password", true, "Password",
+                                'Password', (value) {
+                              _password = value;
+                            }),
+                            Container(
+                              height: 54.0,
+                            ),
+                            Container(
+                              height: UIConstants.fitToHeight(45, context),
+                              width: UIConstants.fitToWidth(116, context),
+                              child: RaisedButton(
+                                color: Color(0xff0D4971),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                onPressed: login,
+                                child: Text(
+                                  'Log In',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18.0),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    )),
-              )
-            ]),
+                          ],
+                        ),
+                      )),
+                )
+              ],
+            ),
           ),
         ));
   }
