@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zero_vendor/models/User.dart';
 import 'package:zero_vendor/services/authService.dart';
 import 'package:zero_vendor/services/baseService.dart';
 import 'dart:async';
@@ -51,7 +52,8 @@ class UserService extends BaseService {
     return http.get(url, headers: headers);
   }
 
-  getUserInfoResponse() async {
-    
+  static getUserInfoResponse() async {
+    http.Response response = await getUserInfoRequest();
+    return User.fromJson(jsonDecode(response.body));
   }
 }

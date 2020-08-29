@@ -5,35 +5,35 @@ User userFromJson(String str) => User.fromJson(json.decode(str));
 String userToJson(User data) => json.encode(data.toJson());
 
 class User {
-    User({
-        this.role,
-        this.purchases,
-        this.id,
-        this.name,
-        this.lastname,
-        this.email,
-        this.v,
-        this.address,
-        this.latitude,
-        this.longitude,
-        this.phone,
-        this.pincode,
-    });
+  User({
+    this.role,
+    this.purchases,
+    this.id,
+    this.name,
+    this.lastname,
+    this.email,
+    this.v,
+    this.address,
+    this.latitude,
+    this.longitude,
+    this.phone,
+    this.pincode,
+  });
 
-    int role;
-    List<dynamic> purchases;
-    String id;
-    String name;
-    String lastname;
-    String email;
-    int v;
-    String address;
-    String latitude;
-    String longitude;
-    String phone;
-    String pincode;
+  int role;
+  List<dynamic> purchases;
+  String id;
+  String name;
+  String lastname;
+  String email;
+  int v;
+  String address;
+  String latitude;
+  String longitude;
+  String phone;
+  String pincode;
 
-    factory User.fromJson(Map<String, dynamic> json) => User(
+  factory User.fromJson(Map<String, dynamic> json) => User(
         role: json["role"],
         purchases: List<dynamic>.from(json["purchases"].map((x) => x)),
         id: json["_id"],
@@ -46,9 +46,9 @@ class User {
         longitude: json["longitude"],
         phone: json["phone"],
         pincode: json["pincode"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "role": role,
         "purchases": List<dynamic>.from(purchases.map((x) => x)),
         "_id": id,
@@ -61,5 +61,5 @@ class User {
         "longitude": longitude,
         "phone": phone,
         "pincode": pincode,
-    };
+      };
 }
