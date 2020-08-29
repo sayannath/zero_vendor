@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:zero_vendor/services/userService.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:zero_vendor/view/addDataPage.dart';
 
 import '../constants.dart';
 
@@ -102,7 +103,14 @@ class _ProfilePageState extends State<ProfilePage> {
               child: MaterialButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
-                onPressed: () => {},
+                onPressed: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddDataPage(),
+                    ),
+                  )
+                },
                 color: Colors.blueAccent,
                 minWidth: 150,
                 child: Text(
