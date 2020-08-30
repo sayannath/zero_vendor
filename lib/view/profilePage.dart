@@ -1,13 +1,16 @@
 import 'dart:convert';
 
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:zero_vendor/models/User.dart';
+import 'package:zero_vendor/services/authService.dart';
 import 'package:zero_vendor/services/userService.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zero_vendor/view/addDataPage.dart';
 import 'package:zero_vendor/constants.dart';
+import 'package:zero_vendor/view/loginPage.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -22,6 +25,15 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     getUserInfo();
+  }
+
+  signOut() async {
+    await AuthService.clearAuth();
+
+    Navigator.of(context).pushAndRemoveUntil(
+        new MaterialPageRoute(builder: (context) {
+      return LoginPage();
+    }), (Route<dynamic> route) => false);
   }
 
   getUserInfo() async {
@@ -145,6 +157,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                   ),
+                  Container(
+                    child: IconButton(
+                        icon: Icon(Icons.exit_to_app),
+                        onPressed: () => signOut()),
+                  )
                 ],
               ),
             )

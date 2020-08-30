@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http;
 class BaseService {
   static const AUTH_URI = "http://ec2-3-83-125-93.compute-1.amazonaws.com/api/signin";
    static const USER_URI = "http://ec2-3-83-125-93.compute-1.amazonaws.com/api/user";
-  // static const AUTH_URI = "http://127.0.0.1:3000/api/signin";
-  // static const USER_URI = "http://127.0.0.1:3000/api/user";
+  // static const AUTH_URI = "http://192.168.1.4:3000/api/signin";
+  // static const USER_URI = "http://192.168.1.4:3000/api/user";
   static final Map<String, String> headers = {
     "Content-Type": "application/json"
   };
