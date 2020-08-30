@@ -50,12 +50,26 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, height: 896, width: 414, allowFontScaling: true);
     return Scaffold(
-      appBar: AppBar(title: Text('Profile')),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
       body: load
           ? Container(
               padding: EdgeInsets.all(15),
               child: ListView(
                 children: <Widget>[
+                  Container(
+                    child: Text(
+                      'Profile',
+                      style:
+                          TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                    ),
+                  ),
                   Container(
                     alignment: Alignment.center,
                     height: kSpacingUnit.w * 10,
