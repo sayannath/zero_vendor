@@ -29,9 +29,9 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Rakib\'s Inventory',
+                      'Rakib\'s Dasboard',
                       style:
-                          TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       'May,12,2020',
@@ -117,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

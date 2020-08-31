@@ -60,14 +60,14 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: load
           ? Container(
-              padding: EdgeInsets.all(15),
+              padding: EdgeInsets.all(20),
               child: ListView(
                 children: <Widget>[
                   Container(
                     child: Text(
                       'Profile',
                       style:
-                          TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Container(
