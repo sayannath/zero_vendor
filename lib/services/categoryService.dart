@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-import 'package:zero_vendor/models/Category.dart';
 import 'package:zero_vendor/services/authService.dart';
 import 'package:zero_vendor/services/baseService.dart';
 
@@ -15,10 +12,5 @@ class CategoryService extends BaseService {
     print(url);
 
     return http.get(url, headers: headers);
-  }
-
-  static getAllCategoriesResponse() async {
-    http.Response response = await getAllCategoriesRequest();
-    return Category.fromJson(jsonDecode(response.body));
   }
 }
