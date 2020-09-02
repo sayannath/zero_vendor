@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:zero_vendor/view/OrderHistory.dart';
 import 'package:zero_vendor/view/homePage.dart';
 import 'package:zero_vendor/view/inventory.dart';
-import 'package:zero_vendor/view/profilePage.dart';
 import 'package:zero_vendor/view/settings.dart';
 
 class Home extends StatefulWidget {

@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:zero_vendor/models/Category.dart';
+import 'package:zero_vendor/services/categoryService.dart';
 
 class Inventory extends StatefulWidget {
   @override
@@ -6,6 +11,25 @@ class Inventory extends StatefulWidget {
 }
 
 class _InventoryState extends State<Inventory> {
+
+  List<dynamic> data;
+  Category category;
+  bool _isLoading = false;
+
+  @override
+  void initState() { 
+    super.initState();
+    getAllCategoriesInfo();
+  }
+  getAllCategoriesInfo() async {
+    http.Response response = await CategoryService.getAllCategoriesRequest();
+    print(response.body);
+    setState(() {
+      data = jsonDecode(response.body);
+      _isLoading = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +47,7 @@ class _InventoryState extends State<Inventory> {
             height: MediaQuery.of(context).size.height-110,
             alignment: Alignment.center,
             child: Text(
-              'Empty Invetory',
+              '$data',
               style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
             ),
           ),
