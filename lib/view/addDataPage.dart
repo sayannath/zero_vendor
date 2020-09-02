@@ -5,7 +5,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:zero_vendor/models/User.dart';
 import 'package:zero_vendor/services/userService.dart';
-import 'package:zero_vendor/view/homePage.dart';
+import 'package:zero_vendor/view/Home.dart';
+
 
 class AddDataPage extends StatefulWidget {
   @override
@@ -55,7 +56,7 @@ class _AddDataPageState extends State<AddDataPage> {
       if (response.statusCode == 200) {
         Navigator.of(context)
             .pushReplacement(MaterialPageRoute(builder: (BuildContext context) {
-          return HomePage();
+          return Home();
         }));
       } else {
         scaffkey.currentState.showSnackBar(new SnackBar(

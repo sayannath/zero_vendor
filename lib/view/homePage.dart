@@ -1,10 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zero_vendor/models/User.dart';
-import 'package:zero_vendor/services/authService.dart';
-import 'package:zero_vendor/view/loginPage.dart';
 import 'package:zero_vendor/view/profilePage.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -29,9 +25,9 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Rakib\'s Inventory',
+                      'Sambit\'s Dasboard',
                       style:
-                          TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       'May,12,2020',
@@ -117,14 +113,15 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
   }
 }
 
-display1(BuildContext context, String title, String value, Color c1, Color c2,Color textc) {
+display1(BuildContext context, String title, String value, Color c1, Color c2,
+    Color textc) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
     child: Card(
@@ -135,7 +132,10 @@ display1(BuildContext context, String title, String value, Color c1, Color c2,Co
       elevation: 8,
       child: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [c1,c2],begin: Alignment.topLeft,end: Alignment.bottomRight),
+          gradient: LinearGradient(
+              colors: [c1, c2],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight),
           borderRadius: BorderRadius.circular(15),
         ),
         width: MediaQuery.of(context).size.width - 40,
