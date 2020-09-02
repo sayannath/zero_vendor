@@ -1,9 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:zero_vendor/models/Category.dart';
-import 'package:zero_vendor/services/categoryService.dart';
+import 'package:zero_vendor/view/addItem.dart';
 
 class Inventory extends StatefulWidget {
   @override
@@ -11,25 +7,6 @@ class Inventory extends StatefulWidget {
 }
 
 class _InventoryState extends State<Inventory> {
-
-  List<dynamic> data;
-  Category category;
-  bool _isLoading = false;
-
-  @override
-  void initState() { 
-    super.initState();
-    getAllCategoriesInfo();
-  }
-  getAllCategoriesInfo() async {
-    http.Response response = await CategoryService.getAllCategoriesRequest();
-    print(response.body);
-    setState(() {
-      data = jsonDecode(response.body);
-      _isLoading = true;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,19 +14,27 @@ class _InventoryState extends State<Inventory> {
       body: ListView(
         children: [
           Container(
-            padding: EdgeInsets.only(left:20, top:30,),
+            padding: EdgeInsets.only(
+              left: 20,
+              top: 30,
+            ),
             child: Text(
               'Inventory',
               style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
             ),
           ),
           Container(
-            height: MediaQuery.of(context).size.height-150,
+            height: MediaQuery.of(context).size.height - 150,
             alignment: Alignment.center,
-            child: Text(
-              '$data',
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-            ),
+            // child: ListView.builder(
+            //   itemCount: categoryList.length,
+            //   itemBuilder: (context, index) {
+            //     return Text(
+            //       categoryList[index].name,
+            //       style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+            //     );
+            //   },
+            // ),
           ),
         ],
       ),
@@ -71,7 +56,14 @@ class _InventoryState extends State<Inventory> {
                   end: Alignment.bottomLeft),
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddItem(),
+              ),
+            );
+          },
         ),
       ),
     );
