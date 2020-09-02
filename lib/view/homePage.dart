@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Rakib\'s Dasboard',
+                      'Sambit\'s Dasboard',
                       style:
                           TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                     ),

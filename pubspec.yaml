@@ -19,6 +19,7 @@ dependencies:
   flutter_screenutil: ^2.3.0
   animated_theme_switcher: "^1.0.5"
   curved_navigation_bar: ^0.3.3
+  google_nav_bar: ^3.0.0
 
 dev_dependencies:
   flutter_test:
