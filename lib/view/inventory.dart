@@ -20,7 +20,7 @@ class _InventoryState extends State<Inventory> {
             ),
           ),
           Container(
-            height: MediaQuery.of(context).size.height-110,
+            height: MediaQuery.of(context).size.height-150,
             alignment: Alignment.center,
             child: Text(
               'Empty Invetory',
@@ -29,7 +29,6 @@ class _InventoryState extends State<Inventory> {
           ),
         ],
       ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 80.0),
         child: FloatingActionButton(

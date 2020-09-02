@@ -23,7 +23,7 @@ class _OrderHistoryState extends State<OrderHistory> {
             ),
           ),
           Container(
-            height: MediaQuery.of(context).size.height - 110,
+            height: MediaQuery.of(context).size.height - 150,
             alignment: Alignment.center,
             child: Text(
               'No Orders Yet!',
