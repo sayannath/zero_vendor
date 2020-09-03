@@ -1,10 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zero_vendor/models/Category.dart';
+import 'package:zero_vendor/models/product.dart';
+import 'package:zero_vendor/services/authService.dart';
 import 'package:zero_vendor/services/categoryService.dart';
 import 'package:http/http.dart' as http;
 import 'package:file_picker/file_picker.dart';
+import 'package:zero_vendor/services/ProductService.dart';
+import 'package:zero_vendor/models/User.dart';
+import 'package:zero_vendor/services/userService.dart';
 // name:
 //   description:
 //   price:
@@ -21,21 +27,31 @@ class AddItem extends StatefulWidget {
 class _AddItemState extends State<AddItem> {
   List<dynamic> data;
   Category category;
-  bool _isLoading = false;
+  bool _isLoading = true;
   List<Category> categoryList = [];
   List<DropdownMenuItem> cdl = [];
   bool load = false;
+  String id;
+  Map<String, dynamic> userdata;
 
   TextEditingController name = TextEditingController();
   TextEditingController desc = TextEditingController();
   TextEditingController price = TextEditingController();
   TextEditingController stock = TextEditingController();
-  String catType = 'sdasd';
+  String catType = '5f4f4ac8fa2ecb66ff4b3d0f';
 
   @override
   void initState() {
     super.initState();
-    getAllCategoriesInfo();
+    getUserInfo();
+    // getAllCategoriesInfo();
+  }
+
+  getUserInfo() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      id = prefs.getString('id');
+    });
   }
 
   getAllCategoriesInfo() async {
@@ -53,7 +69,7 @@ class _AddItemState extends State<AddItem> {
       setState(() {
         cdl.add(DropdownMenuItem(
           child: Text(element.name),
-          value: element.name.toString(),
+          value: element.id.toString(),
         ));
       });
     });
@@ -176,29 +192,43 @@ class _AddItemState extends State<AddItem> {
                                 TextInputType.number),
                             tff('Enter Stock of Product', 1, stock,
                                 TextInputType.number),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 8.0, horizontal: 15),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    color: Colors.white),
-                                child: ddcat(),
-                              ),
-                            ),
+                            // Padding(
+                            //   padding: EdgeInsets.symmetric(
+                            //       vertical: 8.0, horizontal: 15),
+                            //   child: Container(
+                            //     decoration: BoxDecoration(
+                            //         borderRadius: BorderRadius.circular(10.0),
+                            //         color: Colors.white),
+                            //     child: ddcat(),
+                            //   ),
+                            // ),
                             SizedBox(
                               height: 15,
                             ),
                             MaterialButton(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12)),
-                              onPressed: () {
+                              onPressed: () async {
                                 print(name.text);
                                 print(desc.text);
                                 print(price.text);
                                 print(stock.text);
-                                print(file.path);
+                                print(file.absolute.path);
                                 print(catType);
+
+                                Product product = Product(
+                                  description: desc.text,
+                                  name: name.text,
+                                  price: double.parse(price.text),
+                                  stock: int.parse(stock.text),
+                                  category: catType,
+                                  photo: file.absolute.path,
+                                  user: id,
+                                );
+                                print(product.user);
+                                http.Response response =
+                                    await ProductService.createProduct(product);
+                                print(response.body);
                               },
                               color: Colors.green,
                               child: Text(

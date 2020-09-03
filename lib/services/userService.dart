@@ -39,7 +39,7 @@ class UserService extends BaseService {
   }
 
   static Future<http.Response> getUserInfoRequest() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();  
     var user = await AuthService.getSavedAuth();
     String id = prefs.getString('id');
     print("User service class $id");
