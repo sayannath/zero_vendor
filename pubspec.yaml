@@ -31,3 +31,12 @@ flutter:
   assets:
     - assets/images/splashScreenLogo.png
     - assets/images/avatar.png
+
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: Fonts/Montserrat-SemiBold.ttf
+
+    - family: Source Sans Pro
+      fonts:
+        - asset: Fonts/SourceSansPro-SemiBold.ttf
