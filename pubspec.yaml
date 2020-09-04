@@ -20,6 +20,7 @@ dependencies:
   animated_theme_switcher: "^1.0.5"
   curved_navigation_bar: ^0.3.3
   google_nav_bar: ^3.0.0
+  file_picker: ^1.13.3
 
 dev_dependencies:
   flutter_test:
@@ -30,4 +31,3 @@ flutter:
   assets:
     - assets/images/splashScreenLogo.png
     - assets/images/avatar.png
-
