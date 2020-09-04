@@ -49,114 +49,119 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            height: 500,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 499,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF1386F0),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(0.0),
-                      bottomLeft: Radius.circular(27.0),
-                      bottomRight: Radius.circular(27.0),
-                      topRight: Radius.circular(0.0),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                height: 500,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 499,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF1386F0),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(0.0),
+                          bottomLeft: Radius.circular(27.0),
+                          bottomRight: Radius.circular(27.0),
+                          topRight: Radius.circular(0.0),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                Container(
-                  child: CircleAvatar(
-                    radius: 80,
-                    backgroundColor: Color(0xFF1386F0),
-                    child: Opacity(
-                      opacity: 0.8,
+                    Container(
                       child: CircleAvatar(
                         radius: 80,
-                        backgroundImage: AssetImage('assets/images/avatar.png'),
+                        backgroundColor: Color(0xFF1386F0),
+                        child: Opacity(
+                          opacity: 0.8,
+                          child: CircleAvatar(
+                            radius: 80,
+                            backgroundImage: AssetImage('assets/images/avatar.png'),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                Container(
-                  height: 150,
-                  width: 150,
-                  child: Container(
-                    alignment: Alignment.bottomRight,
-                    child: Icon(
-                      Icons.add_a_photo,
-                      size: 40,
-                      color: Colors.black54,
+                    Container(
+                      height: 150,
+                      width: 150,
+                      child: Container(
+                        alignment: Alignment.bottomRight,
+                        child: Icon(
+                          Icons.add_a_photo,
+                          size: 40,
+                          color: Colors.black54,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.bottomCenter,
-                  height: 240,
-                  child: Text(
-                    'Remove',
-                    style: TextStyle(
-                        color: Colors.redAccent,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.bottomCenter,
-                  height: 345,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Shyam Singh',
-                        style: TextStyle(color: Colors.white, fontSize: 32),
+                    Container(
+                      alignment: Alignment.bottomCenter,
+                      height: 240,
+                      child: Text(
+                        'Remove',
+                        style: TextStyle(
+                            color: Colors.redAccent,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
-                        width: 10,
+                    ),
+                    Container(
+                      alignment: Alignment.bottomCenter,
+                      height: 345,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Shyam Singh',
+                            style: TextStyle(color: Colors.white, fontSize: 32),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.edit,
+                            color: Colors.white,
+                          ),
+                        ],
                       ),
-                      Icon(
-                        Icons.edit,
-                        color: Colors.white,
+                    ),
+                    Container(
+                      alignment: Alignment.bottomCenter,
+                      height: 395,
+                      child: Text(
+                        'Vendor',
+                        style: TextStyle(
+                            color: Colors.grey[400],
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold),
                       ),
-                    ],
+                    ),
+                  ],
+                ),
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ListTile(
+                    leading: Icon(Icons.call),
+                    title: Text(
+                      'Phone Number',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text('+ 91 0000000000'),
+                    trailing: Icon(Icons.edit),
                   ),
-                ),
-                Container(
-                  alignment: Alignment.bottomCenter,
-                  height: 395,
-                  child: Text(
-                    'Vendor',
-                    style: TextStyle(
-                        color: Colors.grey[400],
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          ListView(
-            children: [
-              ListTile(
-                leading: Icon(Icons.call),
-                title: Text(
-                  'Phone Number',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold),
-                ),
-                subtitle: Text('+ 91 0000000000'),
-                trailing: Icon(Icons.edit),
+                ],
               )
             ],
-          )
-        ],
+          ),
+        ),
       ),
     );
   }
