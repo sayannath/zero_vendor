@@ -74,10 +74,14 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                     height: MediaQuery.of(context).size.height * 0.11,
                     width: MediaQuery.of(context).size.width * 0.01),
+                Image.asset(
+                  "assets/images/splashScreenLogo.png",
+                  height: 150,
+                ),
                 Row(
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.only(left: 58.0, top: 100),
+                      padding: const EdgeInsets.only(left: 58.0, top: 50),
                       child: Container(
                         child: Text(
                           'Log In',
@@ -101,36 +105,77 @@ class _LoginPageState extends State<LoginPage> {
                         child: Column(
                           children: <Widget>[
                             _input(
-                                "Please enter Email", false, "Email", 'Email',
-                                (value) {
-                              _email = value;
-                            }),
+                              "Please enter Email",
+                              false,
+                              "Email",
+                              'Email',
+                              (value) {
+                                _email = value;
+                              },
+                              Icon(Icons.email),
+                            ),
                             Container(
                               height: 16.0,
                             ),
-                            _input("Please enter password", true, "Password",
-                                'Password', (value) {
-                              _password = value;
-                            }),
+                            _input(
+                              "Please enter password",
+                              true,
+                              "Password",
+                              'Password',
+                              (value) {
+                                _password = value;
+                              },
+                              Icon(Icons.lock),
+                            ),
                             Container(
                               height: 54.0,
                             ),
-                            Container(
-                              height: UIConstants.fitToHeight(45, context),
-                              width: UIConstants.fitToWidth(116, context),
-                              child: RaisedButton(
-                                color: Color(0xff0D4971),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: UIConstants.fitToHeight(45, context),
+                                  width: UIConstants.fitToWidth(116, context),
+                                  child: RaisedButton(
+                                    color: Color(0xff1386F0),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(25.0),
+                                    ),
+                                    onPressed: login,
+                                    child: Text(
+                                      'Login',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 18.0),
+                                    ),
+                                  ),
                                 ),
-                                onPressed: login,
-                                child: Text(
-                                  'Log In',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 18.0),
+                                SizedBox(
+                                  width: 20,
                                 ),
-                              ),
-                            ),
+                                Container(
+                                  height: UIConstants.fitToHeight(45, context),
+                                  width: UIConstants.fitToWidth(116, context),
+                                  child: RaisedButton(
+                                    color: Color(0xff1386F0),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(25.0),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AddDataPage()));
+                                    },
+                                    child: Text(
+                                      'Sign Up',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 18.0),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       )),
@@ -141,9 +186,11 @@ class _LoginPageState extends State<LoginPage> {
         ));
   }
 
-  Widget _input(String validation, bool, String label, String hint, save) {
+  Widget _input(
+      String validation, bool, String label, String hint, save, Icon i) {
     return new TextFormField(
       decoration: InputDecoration(
+        prefixIcon: i,
         filled: true,
         fillColor: Colors.white,
         hintText: hint,
@@ -152,8 +199,8 @@ class _LoginPageState extends State<LoginPage> {
         labelStyle: TextStyle(fontSize: 15, color: Colors.black),
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
         border: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black),
-            borderRadius: BorderRadius.circular(10.0)),
+            borderSide: BorderSide(color: Color(0xffA2A7B5)),
+            borderRadius: BorderRadius.circular(25.0)),
       ),
       obscureText: bool,
       validator: (value) => value.isEmpty ? validation : null,

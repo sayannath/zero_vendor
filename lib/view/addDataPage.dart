@@ -7,7 +7,6 @@ import 'package:zero_vendor/models/User.dart';
 import 'package:zero_vendor/services/userService.dart';
 import 'package:zero_vendor/view/Home.dart';
 
-
 class AddDataPage extends StatefulWidget {
   @override
   _AddDataPageState createState() => _AddDataPageState();
@@ -86,7 +85,7 @@ class _AddDataPageState extends State<AddDataPage> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'Add Vendor Data',
+                      'Sign up',
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 24,
@@ -117,24 +116,45 @@ class _AddDataPageState extends State<AddDataPage> {
                           Container(
                             height: 16.0,
                           ),
-                          _input(phoneNumber, "Please enter Phone Number",
-                              "Phone Number", 'Phone Number', (value) {
-                            phoneNumber = value;
-                          }, TextInputType.text),
+                          _input(
+                            phoneNumber,
+                            "Please enter Phone Number",
+                            "Phone Number",
+                            'Phone Number',
+                            (value) {
+                              phoneNumber = value;
+                            },
+                            TextInputType.text,
+                            Icon(Icons.call),
+                          ),
                           Container(
                             height: 16.0,
                           ),
-                          _input(pincode, "Please enter Pincode", "Pincode",
-                              'Pincode', (value) {
-                            pincode = value;
-                          }, TextInputType.text),
+                          _input(
+                            pincode,
+                            "Please enter Pincode",
+                            "Pincode",
+                            'Pincode',
+                            (value) {
+                              pincode = value;
+                            },
+                            TextInputType.text,
+                            Icon(Icons.lock),
+                          ),
                           Container(
                             height: 16.0,
                           ),
-                          _input(address, "Please enter Address", "Address",
-                              'Address', (value) {
-                            address = value;
-                          }, TextInputType.text),
+                          _input(
+                            address,
+                            "Please enter Address",
+                            "Address",
+                            'Address',
+                            (value) {
+                              address = value;
+                            },
+                            TextInputType.text,
+                            Icon(Icons.location_on),
+                          ),
                           Container(
                             height: 14.0,
                           ),
@@ -158,9 +178,9 @@ class _AddDataPageState extends State<AddDataPage> {
                               onPressed: () {
                                 _updateUserInfo();
                               },
-                              color: Colors.green,
+                              color: Color(0xff1386F0),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
+                                borderRadius: BorderRadius.circular(25.0),
                               ),
                               child: Text(
                                 'Continue',
@@ -181,10 +201,18 @@ class _AddDataPageState extends State<AddDataPage> {
   }
 }
 
-Widget _input(String initalValue, String validation, String label, String hint,
-    save, TextInputType keyType) {
+Widget _input(
+  String initalValue,
+  String validation,
+  String label,
+  String hint,
+  save,
+  TextInputType keyType,
+  Icon i,
+) {
   return new TextFormField(
     decoration: InputDecoration(
+      prefixIcon: i,
       filled: true,
       fillColor: Colors.white,
       hintText: hint,
@@ -194,7 +222,7 @@ Widget _input(String initalValue, String validation, String label, String hint,
       contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
       border: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.black),
-          borderRadius: BorderRadius.circular(10.0)),
+          borderRadius: BorderRadius.circular(25.0)),
     ),
     validator: (value) => value.isEmpty ? validation : null,
     onSaved: save,
