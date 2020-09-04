@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:zero_vendor/models/User.dart';
@@ -48,126 +47,117 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, height: 896, width: 414, allowFontScaling: true);
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: Colors.black,
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-      ),
-      body: load
-          ? Container(
-              padding: EdgeInsets.all(20),
-              child: ListView(
-                children: <Widget>[
-                  Container(
-                    child: Text(
-                      'Profile',
-                      style:
-                          TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            height: 500,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 499,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF1386F0),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(0.0),
+                      bottomLeft: Radius.circular(27.0),
+                      bottomRight: Radius.circular(27.0),
+                      topRight: Radius.circular(0.0),
                     ),
                   ),
-                  Container(
-                    alignment: Alignment.center,
-                    height: kSpacingUnit.w * 10,
-                    width: kSpacingUnit.w * 10,
-                    margin: EdgeInsets.only(top: kSpacingUnit.w * 3),
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: <Widget>[
-                        CircleAvatar(
-                          radius: kSpacingUnit.w * 5,
-                          backgroundImage:
-                              AssetImage('assets/images/avatar.png'),
-                        ),
-                        Container(
-                          height: 100,
-                          width: 100,
-                          child: Container(
-                            alignment: Alignment.bottomRight,
-                            height: 15,
-                            width: 15,
-                            decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Container(
-                              height: 25,
-                              width: 25,
-                              decoration: BoxDecoration(
-                                color: Colors.redAccent,
-                                shape: BoxShape.circle,
-                              ),
-                              child: Icon(
-                                LineAwesomeIcons.pen,
-                                color: kDarkPrimaryColor,
-                                size: 15,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: kSpacingUnit.w * 2),
-                  Text(currentUser.name + ' ' + currentUser.lastname,
-                      style: kTitleTextStyle),
-                  SizedBox(height: kSpacingUnit.w * 0.5),
-                  Text(
-                    currentUser.email,
-                    style: kCaptionTextStyle,
-                  ),
-                  SizedBox(height: kSpacingUnit.w * 0.5),
-                  Text(
-                    currentUser.phone,
-                    style: kCaptionTextStyle,
-                  ),
-                  SizedBox(height: kSpacingUnit.w * 0.5),
-                  Text(
-                    currentUser.address,
-                    style: kCaptionTextStyle,
-                  ),
-                  SizedBox(height: kSpacingUnit.w * 0.5),
-                  Text(
-                    currentUser.pincode,
-                    style: kCaptionTextStyle,
-                  ),
-                  SizedBox(height: kSpacingUnit.w * 0.5),
-                  Container(
-                    alignment: Alignment.center,
-                    child: MaterialButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
-                      onPressed: () => {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => AddDataPage(),
-                          ),
-                        )
-                      },
-                      color: Colors.blueAccent,
-                      minWidth: 150,
-                      child: Text(
-                        'Edit User',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+                Container(
+                  child: CircleAvatar(
+                    radius: 80,
+                    backgroundColor: Color(0xFF1386F0),
+                    child: Opacity(
+                      opacity: 0.8,
+                      child: CircleAvatar(
+                        radius: 80,
+                        backgroundImage: AssetImage('assets/images/avatar.png'),
                       ),
                     ),
                   ),
-                  Container(
-                    child: IconButton(
-                        icon: Icon(Icons.exit_to_app),
-                        onPressed: () => signOut()),
-                  )
-                ],
-              ),
-            )
-          : Center(
-              child: CircularProgressIndicator(),
+                ),
+                Container(
+                  height: 150,
+                  width: 150,
+                  child: Container(
+                    alignment: Alignment.bottomRight,
+                    child: Icon(
+                      Icons.add_a_photo,
+                      size: 40,
+                      color: Colors.black54,
+                    ),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  height: 240,
+                  child: Text(
+                    'Remove',
+                    style: TextStyle(
+                        color: Colors.redAccent,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  height: 345,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Shyam Singh',
+                        style: TextStyle(color: Colors.white, fontSize: 32),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Icon(
+                        Icons.edit,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  height: 395,
+                  child: Text(
+                    'Vendor',
+                    style: TextStyle(
+                        color: Colors.grey[400],
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
             ),
+          ),
+          ListView(
+            children: [
+              ListTile(
+                leading: Icon(Icons.call),
+                title: Text(
+                  'Phone Number',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
+                ),
+                subtitle: Text('+ 91 0000000000'),
+                trailing: Icon(Icons.edit),
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }
