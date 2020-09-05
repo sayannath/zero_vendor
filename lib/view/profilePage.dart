@@ -80,8 +80,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           opacity: 0.8,
                           child: CircleAvatar(
                             radius: 80,
-                            backgroundImage: AssetImage('assets/images/avatar.png'),
-                          ),
+                            backgroundImage: NetworkImage(
+                                'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
+                            ),
                         ),
                       ),
                     ),
@@ -99,25 +100,30 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     Container(
                       alignment: Alignment.bottomCenter,
-                      height: 240,
+                      height: 225,
                       child: Text(
                         'Remove',
                         style: TextStyle(
-                            color: Colors.redAccent,
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold),
+                            fontFamily: 'Montserrat',
+                            color: Colors.white,
+                            fontSize: 12,
+                                   fontWeight: FontWeight.bold),
                       ),
                     ),
                     Container(
                       alignment: Alignment.bottomCenter,
-                      height: 345,
-                      child: Row(
+                       height: 335,
+                        child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             'Shyam Singh',
-                            style: TextStyle(color: Colors.white, fontSize: 32),
-                          ),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                              fontFamily: 'Montserrat',
+                            ),
+                             ),
                           SizedBox(
                             width: 10,
                           ),
@@ -130,14 +136,18 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     Container(
                       alignment: Alignment.bottomCenter,
-                      height: 395,
-                      child: Text(
-                        'Vendor',
-                        style: TextStyle(
-                            color: Colors.grey[400],
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold),
-                      ),
+                      height: 390,
+                      child: Opacity(
+                        opacity: 0.7,
+                        child: Text(
+                          'Vendor',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.bold),
+                        ),
+                        ),
                     ),
                   ],
                 ),
@@ -146,18 +156,110 @@ class _ProfilePageState extends State<ProfilePage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ListTile(
-                    leading: Icon(Icons.call),
-                    title: Text(
+                    leading: Icon(
+                      Icons.call,
+                      color: Colors.black,
+                    ),
+                     title: Text(
                       'Phone Number',
                       style: TextStyle(
                           color: Colors.black,
-                          fontSize: 22,
+                          fontFamily: 'Montserrat',
+                          fontSize: 17,
                           fontWeight: FontWeight.bold),
                     ),
-                    subtitle: Text('+ 91 0000000000'),
-                    trailing: Icon(Icons.edit),
+                    subtitle: Text(
+                      '+ 91 0000000000',
+                      style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontSize: 15,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.edit,
+                      color: Colors.black,
+                      size: 22,
+                    ),
                   ),
-                ],
+                  ListTile(
+                    leading: Icon(
+                      Icons.mail,
+                      color: Colors.black,
+                    ),
+                    title: Text(
+                      'Email',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Montserrat',
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(
+                      'shyamsingh@gmail.com',
+                      style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontSize: 15,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.edit,
+                      color: Colors.black,
+                      size: 22,
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.location_city,
+                      color: Colors.black,
+                    ),
+                    title: Text(
+                      'Address',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Montserrat',
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(
+                      'Salt Lake, Kolkata',
+                      style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontSize: 15,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.edit,
+                      color: Colors.black,
+                      size: 22,
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.map,
+                      color: Colors.black,
+                    ),
+                    title: Text(
+                      'Pincode',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Montserrat',
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(
+                      '7000000',
+                      style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontSize: 15,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.edit,
+                      color: Colors.black,
+                      size: 22,
+                    ),
+                  ),
+                   ],
               )
             ],
           ),
@@ -166,3 +268,4 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 }
+
