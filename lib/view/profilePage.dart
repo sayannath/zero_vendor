@@ -82,7 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             radius: 80,
                             backgroundImage: NetworkImage(
                                 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
-                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -107,13 +107,13 @@ class _ProfilePageState extends State<ProfilePage> {
                             fontFamily: 'Montserrat',
                             color: Colors.white,
                             fontSize: 12,
-                                   fontWeight: FontWeight.bold),
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                     Container(
                       alignment: Alignment.bottomCenter,
-                       height: 335,
-                        child: Row(
+                      height: 335,
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
@@ -123,7 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               fontSize: 30,
                               fontFamily: 'Montserrat',
                             ),
-                             ),
+                          ),
                           SizedBox(
                             width: 10,
                           ),
@@ -147,7 +147,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.bold),
                         ),
-                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -160,7 +160,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       Icons.call,
                       color: Colors.black,
                     ),
-                     title: Text(
+                    title: Text(
                       'Phone Number',
                       style: TextStyle(
                           color: Colors.black,
@@ -259,7 +259,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       size: 22,
                     ),
                   ),
-                   ],
+                ],
               )
             ],
           ),
@@ -268,4 +268,3 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 }
-
