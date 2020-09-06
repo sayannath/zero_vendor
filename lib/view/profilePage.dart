@@ -5,10 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:zero_vendor/models/User.dart';
 import 'package:zero_vendor/services/authService.dart';
 import 'package:zero_vendor/services/userService.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zero_vendor/view/addDataPage.dart';
-import 'package:zero_vendor/constants.dart';
 import 'package:zero_vendor/view/loginPage.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -50,7 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: load ? SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -117,7 +113,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Shyam Singh',
+                            currentUser.name + " "+ currentUser.lastname,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 30,
@@ -169,7 +165,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontWeight: FontWeight.bold),
                     ),
                     subtitle: Text(
-                      '+ 91 0000000000',
+                      '+ 91 '+currentUser.phone,
                       style: TextStyle(
                         fontFamily: 'Montserrat',
                         fontSize: 15,
@@ -195,7 +191,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontWeight: FontWeight.bold),
                     ),
                     subtitle: Text(
-                      'shyamsingh@gmail.com',
+                      currentUser.email,
                       style: TextStyle(
                         fontFamily: 'Montserrat',
                         fontSize: 15,
@@ -221,7 +217,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontWeight: FontWeight.bold),
                     ),
                     subtitle: Text(
-                      'Salt Lake, Kolkata',
+                      currentUser.address,
                       style: TextStyle(
                         fontFamily: 'Montserrat',
                         fontSize: 15,
@@ -247,7 +243,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontWeight: FontWeight.bold),
                     ),
                     subtitle: Text(
-                      '7000000',
+                      currentUser.pincode,
                       style: TextStyle(
                         fontFamily: 'Montserrat',
                         fontSize: 15,
@@ -263,7 +259,7 @@ class _ProfilePageState extends State<ProfilePage> {
               )
             ],
           ),
-        ),
+        ):Center(child: CircularProgressIndicator(),),
       ),
     );
   }
