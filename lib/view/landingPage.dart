@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:zero_vendor/view/OrderHistory.dart';
 import 'package:zero_vendor/view/homePage.dart';
 import 'package:zero_vendor/view/inventory.dart';
-import 'package:zero_vendor/view/settings.dart';
+import 'package:zero_vendor/view/settingsPage.dart';
 
 class Home extends StatefulWidget {
   @override

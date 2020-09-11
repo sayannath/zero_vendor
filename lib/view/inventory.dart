@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zero_vendor/view/addItem.dart';
+import 'package:zero_vendor/view/addItemPage.dart';
 
 class Inventory extends StatefulWidget {
   @override

@@ -2,12 +2,12 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zero_vendor/models/User.dart';
 import 'package:zero_vendor/services/baseService.dart';
 
 class AuthService extends BaseService {
   static Map<String, dynamic> _authDetails;
   static const String authNamespace = "auth";
+  static const BASE_URI = "http://ec2-3-83-125-93.compute-1.amazonaws.com/api/";
 
   // ignore: missing_return
   static Future<http.Response> makeAuthenticatedRequest(String path,
@@ -21,8 +21,7 @@ class AuthService extends BaseService {
       extraHeaders ??= {};
       var sentHeaders = mergeDefaultHeader
           ? {
-              ...BaseService.headers,
-              ...extraHeaders,
+              "Content-Type": "application/json",
               "Authorization": "Bearer ${auth['access']}"
             }
           : extraHeaders;
@@ -32,7 +31,10 @@ class AuthService extends BaseService {
           body ??= {};
           return http.post(path, headers: sentHeaders, body: body);
 
-        //TODO: GET REQUEST
+        case 'GET':
+          body ??= {};
+          return http.get(path, headers: sentHeaders);
+
         default:
           print("");
           return http.post(path, headers: sentHeaders, body: body);
@@ -77,13 +79,10 @@ class AuthService extends BaseService {
     return success;
   }
 
-  static _saveToken(
-      String token, String email, String role, String id) async {
+  static _saveToken(String token, String email, String role, String id) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(
-        authNamespace,
-        json.encode(
-            {"email": email, "token": token, "role": role}));
+    await prefs.setString(authNamespace,
+        json.encode({"email": email, "token": token, "role": role}));
     prefs.setString("id", id);
   }
 

@@ -5,7 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:zero_vendor/models/User.dart';
 import 'package:zero_vendor/services/userService.dart';
-import 'package:zero_vendor/view/Home.dart';
+import 'package:zero_vendor/view/landingPage.dart';
 
 class AddDataPage extends StatefulWidget {
   @override
