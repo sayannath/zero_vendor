@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:zero_vendor/common/ui_constants.dart';
 import 'package:zero_vendor/services/authService.dart';
-import 'package:zero_vendor/view/Home.dart';
+import 'package:zero_vendor/view/landingPage.dart';
 import 'package:zero_vendor/view/addDataPage.dart';
 import 'package:zero_vendor/view/homePage.dart';
 import 'package:zero_vendor/view/loginPage.dart';

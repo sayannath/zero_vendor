@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:zero_vendor/common/ui_constants.dart';
 import 'package:zero_vendor/models/User.dart';
 import 'package:zero_vendor/services/authService.dart';
 import 'package:zero_vendor/services/userService.dart';
@@ -46,221 +47,227 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: load ? SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                height: 500,
-                child: Stack(
-                  alignment: Alignment.center,
+        child: load
+            ? SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 499,
-                      decoration: BoxDecoration(
-                        color: Color(0xFF1386F0),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(0.0),
-                          bottomLeft: Radius.circular(27.0),
-                          bottomRight: Radius.circular(27.0),
-                          topRight: Radius.circular(0.0),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      child: CircleAvatar(
-                        radius: 80,
-                        backgroundColor: Color(0xFF1386F0),
-                        child: Opacity(
-                          opacity: 0.8,
-                          child: CircleAvatar(
-                            radius: 80,
-                            backgroundImage: NetworkImage(
-                                'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 150,
-                      width: 150,
-                      child: Container(
-                        alignment: Alignment.bottomRight,
-                        child: Icon(
-                          Icons.add_a_photo,
-                          size: 40,
-                          color: Colors.black54,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.bottomCenter,
-                      height: 225,
-                      child: Text(
-                        'Remove',
-                        style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.bottomCenter,
-                      height: 335,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      height: 500,
+                      child: Stack(
+                        alignment: Alignment.center,
                         children: [
-                          Text(
-                            currentUser.name + " "+ currentUser.lastname,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 30,
-                              fontFamily: 'Montserrat',
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 499,
+                            decoration: BoxDecoration(
+                              color: Color(0xFF1386F0),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(0.0),
+                                bottomLeft: Radius.circular(27.0),
+                                bottomRight: Radius.circular(27.0),
+                                topRight: Radius.circular(0.0),
+                              ),
                             ),
                           ),
-                          SizedBox(
-                            width: 10,
+                          Container(
+                            child: CircleAvatar(
+                              radius: 80,
+                              backgroundColor: Color(0xFF1386F0),
+                              child: Opacity(
+                                opacity: 0.8,
+                                child: CircleAvatar(
+                                  radius: 80,
+                                  backgroundImage: NetworkImage(
+                                      'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
+                                ),
+                              ),
+                            ),
                           ),
-                          Icon(
-                            Icons.edit,
-                            color: Colors.white,
+                          Container(
+                            height: 150,
+                            width: 150,
+                            child: Container(
+                              alignment: Alignment.bottomRight,
+                              child: Icon(
+                                Icons.add_a_photo,
+                                size: 40,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.bottomCenter,
+                            height: 225,
+                            child: Text(
+                              'Remove',
+                              style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.bottomCenter,
+                            height: 335,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  currentUser.name + " " + currentUser.lastname,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 30,
+                                    fontFamily: 'Montserrat',
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Icon(
+                                  Icons.edit,
+                                  color: Colors.white,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.bottomCenter,
+                            height: 390,
+                            child: Opacity(
+                              opacity: 0.7,
+                              child: Text(
+                                'Vendor',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.bottomCenter,
-                      height: 390,
-                      child: Opacity(
-                        opacity: 0.7,
-                        child: Text(
-                          'Vendor',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ListTile(
+                          leading: Icon(
+                            Icons.call,
+                            color: Colors.black,
+                          ),
+                          title: Text(
+                            'Phone Number',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'Montserrat',
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Text(
+                            '+ 91 ' + currentUser.phone,
+                            style: TextStyle(
                               fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.bold),
+                              fontSize: 15,
+                            ),
+                          ),
+                          trailing: Icon(
+                            Icons.edit,
+                            color: Colors.black,
+                            size: 22,
+                          ),
                         ),
-                      ),
-                    ),
+                        ListTile(
+                          leading: Icon(
+                            Icons.mail,
+                            color: Colors.black,
+                          ),
+                          title: Text(
+                            'Email',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'Montserrat',
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Text(
+                            currentUser.email,
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontSize: 15,
+                            ),
+                          ),
+                          trailing: Icon(
+                            Icons.edit,
+                            color: Colors.black,
+                            size: 22,
+                          ),
+                        ),
+                        ListTile(
+                          leading: Icon(
+                            Icons.location_city,
+                            color: Colors.black,
+                          ),
+                          title: Text(
+                            'Address',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'Montserrat',
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Text(
+                            currentUser.address,
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontSize: 15,
+                            ),
+                          ),
+                          trailing: Icon(
+                            Icons.edit,
+                            color: Colors.black,
+                            size: 22,
+                          ),
+                        ),
+                        ListTile(
+                          leading: Icon(
+                            Icons.map,
+                            color: Colors.black,
+                          ),
+                          title: Text(
+                            'Pincode',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'Montserrat',
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Text(
+                            currentUser.pincode,
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontSize: 15,
+                            ),
+                          ),
+                          trailing: Icon(
+                            Icons.edit,
+                            color: Colors.black,
+                            size: 22,
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ListTile(
-                    leading: Icon(
-                      Icons.call,
-                      color: Colors.black,
-                    ),
-                    title: Text(
-                      'Phone Number',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Montserrat',
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text(
-                      '+ 91 '+currentUser.phone,
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: 15,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.edit,
-                      color: Colors.black,
-                      size: 22,
-                    ),
-                  ),
-                  ListTile(
-                    leading: Icon(
-                      Icons.mail,
-                      color: Colors.black,
-                    ),
-                    title: Text(
-                      'Email',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Montserrat',
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text(
-                      currentUser.email,
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: 15,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.edit,
-                      color: Colors.black,
-                      size: 22,
-                    ),
-                  ),
-                  ListTile(
-                    leading: Icon(
-                      Icons.location_city,
-                      color: Colors.black,
-                    ),
-                    title: Text(
-                      'Address',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Montserrat',
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text(
-                      currentUser.address,
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: 15,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.edit,
-                      color: Colors.black,
-                      size: 22,
-                    ),
-                  ),
-                  ListTile(
-                    leading: Icon(
-                      Icons.map,
-                      color: Colors.black,
-                    ),
-                    title: Text(
-                      'Pincode',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Montserrat',
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text(
-                      currentUser.pincode,
-                      style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: 15,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.edit,
-                      color: Colors.black,
-                      size: 22,
-                    ),
-                  ),
-                ],
               )
-            ],
-          ),
-        ):Center(child: CircularProgressIndicator(),),
+            : Center(
+                child: CircularProgressIndicator(),
+              ),
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () => signOut(), child: Icon(Icons.settings_power)),
     );
   }
 }

@@ -209,25 +209,38 @@ class _AddItemState extends State<AddItem> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12)),
                               onPressed: () async {
-                                print(name.text);
-                                print(desc.text);
-                                print(price.text);
-                                print(stock.text);
-                                print(file.absolute.path);
-                                print(catType);
+                                // print(name.text);
+                                // print(desc.text);
+                                // print(price.text);
+                                // print(stock.text);
+                                // print(file.absolute.path);
+                                // print(catType);
 
-                                Product product = Product(
-                                  description: desc.text,
-                                  name: name.text,
-                                  price: double.parse(price.text),
-                                  stock: int.parse(stock.text),
-                                  category: catType,
-                                  photo: file.absolute.path,
-                                  user: id,
-                                );
-                                print(product.user);
-                                http.Response response =
-                                    await ProductService.createProduct(product);
+                                // Product product = Product(
+                                //   description: desc.text,
+                                //   name: name.text,
+                                //   price: double.parse(price.text),
+                                //   stock: int.parse(stock.text),
+                                //   category: catType,
+                                //   photo: file.absolute.path,
+                                //   user: id,
+                                // );
+                                //print(product.user);
+                                http.Response response = await http.post(
+                                    'http://192.168.1.5:3000/api/product/create/5f49572dd72fc8a8acf710c5',
+                                    headers: {
+                                      "Content-Type": "application/form-data",
+                                      "Authorization":
+                                          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjQ5NTcyZGQ3MmZjOGE4YWNmNzEwYzUiLCJpYXQiOjE1OTkxMzEwMTd9.MZZzGipQPLiI2JfXqla3eJbCjkh59FUy-7UuG-32iro"
+                                    },
+                                    body: json.encode({
+                                      "name": "Condom",
+                                      "description": "Good for having sex",
+                                      "price": "13",
+                                      "stock": "100",
+                                      "category": "5f4c779ff98a660b4b7b97af",
+                                      "user": "5f49572dd72fc8a8acf710c5"
+                                    }));
                                 print(response.body);
                               },
                               color: Colors.green,
