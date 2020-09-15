@@ -82,6 +82,7 @@ class ProductItem extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 8.0),
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,19 +139,18 @@ class ProductItem extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
-            width: 150,
-          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               MaterialButton(
+                onPressed: () {},
                 color: Colors.blueAccent,
                 child: Text(
                   "Completed",
                   style: TextStyle(
-                    color: Color(0xFF5EC3F6),
-                    backgroundColor: Color(0xFFD1EEFD),
+                    // color: Color(0xFF5EC3F6),
+                    color: Colors.white
+                    // backgroundColor: Color(0xFFD1EEFD),
                   ),
                 ),
               ),

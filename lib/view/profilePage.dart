@@ -267,7 +267,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () => signOut(), child: Icon(Icons.settings_power)),
+          onPressed: () => signOut(), child: Icon(Icons.exit_to_app)),
     );
   }
 }

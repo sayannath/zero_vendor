@@ -183,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                                               SignupPage()));
                                 },
                                 child: Padding(
-                                  padding: const EdgeInsets.all(6.0),
+                                  padding: const EdgeInsets.symmetric(horizontal:6.0,vertical: 10,),
                                   child: Text(
                                     "Don't have an account? Sign Up",
                                     style: TextStyle(
