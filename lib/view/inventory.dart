@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zero_vendor/view/CategorySelect.dart';
 import 'package:zero_vendor/view/addItemPage.dart';
 
 class Inventory extends StatefulWidget {
@@ -151,7 +152,7 @@ class _InventoryState extends State<Inventory> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AddItem(),
+                builder: (context) => CatergorySelect(),
               ),
             );
           },
