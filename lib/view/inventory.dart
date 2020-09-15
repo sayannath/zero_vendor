@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zero_vendor/view/addItem.dart';
+import 'package:zero_vendor/view/CategorySelect.dart';
+import 'package:zero_vendor/view/addItemPage.dart';
 
 class Inventory extends StatefulWidget {
   @override
@@ -24,17 +25,108 @@ class _InventoryState extends State<Inventory> {
             ),
           ),
           Container(
-            height: MediaQuery.of(context).size.height - 150,
+            height: MediaQuery.of(context).size.height - 147,
             alignment: Alignment.center,
-            // child: ListView.builder(
-            //   itemCount: categoryList.length,
-            //   itemBuilder: (context, index) {
-            //     return Text(
-            //       categoryList[index].name,
-            //       style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-            //     );
-            //   },
-            // ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical:12.0),
+              child: ListView.builder(
+                itemCount: 20,
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal:15.0,vertical: 8.0),
+                      child: Card(               
+                        elevation: 10,
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Categroy",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Food",
+                                    style: TextStyle(color: Colors.grey[600],fontSize: 13),
+                                  ),
+                                  Text(
+                                    "Item Name",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Maggie",
+                                    style: TextStyle(color: Colors.grey[600],fontSize: 13),
+                                  ),
+                                  Text(
+                                    "Updated On",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    "sat 05/09",
+                                    style: TextStyle(color: Colors.grey[600],fontSize: 13),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Container(
+                                    color: Colors.greenAccent,
+                                    child: Text(
+                                      " Available ",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.green,
+                                      ),
+                                    ),
+                                  ),
+                                  Text(
+                                    "Price",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Rs 45",
+                                    style: TextStyle(),
+                                  ),
+                                  FlatButton.icon(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.edit,
+                                      color: Colors.blue,
+                                    ),
+                                    label: Text(
+                                      'Edit',
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
           ),
         ],
       ),
@@ -60,7 +152,7 @@ class _InventoryState extends State<Inventory> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AddItem(),
+                builder: (context) => CatergorySelect(),
               ),
             );
           },

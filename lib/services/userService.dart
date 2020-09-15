@@ -12,7 +12,7 @@ class UserService extends BaseService {
     var user = await AuthService.getSavedAuth();
     String id = prefs.getString('id');
     print("User service class $id");
-
+    print(user['token']);
     Map<String, String> headers = {
       "Authorization": "Bearer ${user['token']}",
       "Content-Type": "application/json"
