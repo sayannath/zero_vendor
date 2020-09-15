@@ -3,6 +3,7 @@ import 'package:zero_vendor/common/ui_constants.dart';
 import 'package:zero_vendor/services/baseService.dart';
 import 'package:zero_vendor/view/landingPage.dart';
 import 'package:zero_vendor/view/loginPage.dart';
+import 'package:geolocator/geolocator.dart';
 
 class SignupPage extends StatefulWidget {
   @override
@@ -14,14 +15,36 @@ class _SignupPageState extends State<SignupPage> {
   String _password;
   String _name;
   String _lastName;
+  String latitude = '';
+  String longitude = '';
   String _phoneNumber;
   String _address;
   String _pincode;
 
   bool _loggingIn = false;
+  @override
+  void initState() {
+    getLoc();
+    super.initState();
+  }
 
   final formkey = new GlobalKey<FormState>();
   final scaffkey = new GlobalKey<ScaffoldState>();
+  getLoc() {
+    final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+    geolocator
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((value) {
+      setState(() {
+        latitude = value.latitude.toString();
+        longitude = value.longitude.toString();
+        print(latitude);
+        print(longitude);
+      });
+    }).catchError((e) {
+      print(e);
+    });
+  }
 
   checkFields() {
     final form = formkey.currentState;
@@ -39,13 +62,14 @@ class _SignupPageState extends State<SignupPage> {
     setState(() {
       _loggingIn = true;
     });
-    if(checkFields()) {
-      bool authenticated = await BaseService.authenticate(_name, _lastName, _email, _password);
-      if(authenticated){
+    if (checkFields()) {
+      bool authenticated =
+          await BaseService.authenticate(_name, _lastName, _email, _password);
+      if (authenticated) {
         Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (BuildContext context) {
-            return LoginPage();
-          }), (Route<dynamic> route) => false);
+            MaterialPageRoute(builder: (BuildContext context) {
+          return LoginPage();
+        }), (Route<dynamic> route) => false);
       } else {
         setState(() {
           _loggingIn = false;
@@ -89,10 +113,10 @@ class _SignupPageState extends State<SignupPage> {
         iconTheme: IconThemeData(color: Colors.black),
       ),
       body: SingleChildScrollView(
-          child: Container(
-        height: UIConstants.fitToHeight(640, context),
-        width: UIConstants.fitToWidth(360, context),
-        child: Column(
+        child: Container(
+          height: UIConstants.fitToHeight(680, context),
+          width: UIConstants.fitToWidth(360, context),
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -128,111 +152,188 @@ class _SignupPageState extends State<SignupPage> {
               Form(
                 key: formkey,
                 child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: UIConstants.fitToWidth(40, context),
-                            right: UIConstants.fitToWidth(40, context)),
-                        child: SizedBox(
-                          width: UIConstants.fitToWidth(280, context),
-                          child: _input(
-                            "Please enter First Name",
-                            false,
-                            "First Name",
-                            'Fist Name',
-                            (value) {
-                              _name = value;
-                            },
-                            Icon(
-                              Icons.person,
-                            ),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: UIConstants.fitToWidth(40, context),
+                          right: UIConstants.fitToWidth(40, context)),
+                      child: SizedBox(
+                        width: UIConstants.fitToWidth(280, context),
+                        child: _input(
+                          "Please enter First Name",
+                          false,
+                          "First Name",
+                          'Fist Name',
+                          (value) {
+                            _name = value;
+                          },
+                          Icon(
+                            Icons.person,
                           ),
                         ),
                       ),
-                      SizedBox(height: UIConstants.fitToWidth(10, context)),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: UIConstants.fitToWidth(40, context),
-                            right: UIConstants.fitToWidth(40, context)),
-                        child: SizedBox(
-                          width: UIConstants.fitToWidth(280, context),
-                          child: _input(
-                            "Please enter Last Name",
-                            false,
-                            "Last Name",
-                            'last Name',
-                            (value) {
-                              _lastName = value;
-                            },
-                            Icon(Icons.person),
+                    ),
+                    SizedBox(height: UIConstants.fitToWidth(10, context)),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: UIConstants.fitToWidth(40, context),
+                          right: UIConstants.fitToWidth(40, context)),
+                      child: SizedBox(
+                        width: UIConstants.fitToWidth(280, context),
+                        child: _input(
+                          "Please enter Last Name",
+                          false,
+                          "Last Name",
+                          'last Name',
+                          (value) {
+                            _lastName = value;
+                          },
+                          Icon(Icons.person),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: UIConstants.fitToWidth(10, context)),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: UIConstants.fitToWidth(40, context),
+                          right: UIConstants.fitToWidth(40, context)),
+                      child: SizedBox(
+                        width: UIConstants.fitToWidth(280, context),
+                        child: _input(
+                          "Please enter Email",
+                          false,
+                          "Email",
+                          'Email',
+                          (value) {
+                            _email = value;
+                          },
+                          Icon(Icons.email),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: UIConstants.fitToWidth(10, context)),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: UIConstants.fitToWidth(40, context),
+                          right: UIConstants.fitToWidth(40, context)),
+                      child: SizedBox(
+                        width: UIConstants.fitToWidth(280, context),
+                        child: _input(
+                          "Please enter Phone No",
+                          true,
+                          "Phone No",
+                          'Phone No',
+                          (value) {
+                            _phoneNumber = value;
+                          },
+                          Icon(
+                            Icons.phone,
                           ),
                         ),
                       ),
-                      SizedBox(height: UIConstants.fitToWidth(10, context)),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: UIConstants.fitToWidth(40, context),
-                            right: UIConstants.fitToWidth(40, context)),
-                        child: SizedBox(
-                          width: UIConstants.fitToWidth(280, context),
-                          child: _input(
-                            "Please enter Email",
-                            false,
-                            "Email",
-                            'Email',
-                            (value) {
-                              _email = value;
-                            },
-                            Icon(Icons.email),
+                    ),
+                    SizedBox(height: UIConstants.fitToWidth(10, context)),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: UIConstants.fitToWidth(40, context),
+                          right: UIConstants.fitToWidth(40, context)),
+                      child: SizedBox(
+                        width: UIConstants.fitToWidth(280, context),
+                        child: _input(
+                          "Please enter Pincode",
+                          true,
+                          "Pincode",
+                          'Pincode',
+                          (value) {
+                            _pincode = value;
+                          },
+                          Icon(
+                            Icons.fiber_pin,
                           ),
                         ),
                       ),
-                      SizedBox(height: UIConstants.fitToWidth(10, context)),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: UIConstants.fitToWidth(40, context),
-                            right: UIConstants.fitToWidth(40, context)),
-                        child: SizedBox(
-                          width: UIConstants.fitToWidth(280, context),
-                          child: _input(
-                            "Please enter Password",
-                            true,
-                            "Password",
-                            'Password',
-                            (value) {
-                              _password = value;
-                            },
-                            Icon(
-                              Icons.lock,
-                            ),
+                    ),
+                    SizedBox(height: UIConstants.fitToWidth(10, context)),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: UIConstants.fitToWidth(40, context),
+                          right: UIConstants.fitToWidth(40, context)),
+                      child: SizedBox(
+                        width: UIConstants.fitToWidth(280, context),
+                        child: _input(
+                          "Please enter Address",
+                          true,
+                          "Address",
+                          'Address',
+                          (value) {
+                            _address = value;
+                          },
+                          Icon(
+                            Icons.home,
                           ),
                         ),
                       ),
-                      SizedBox(height: UIConstants.fitToHeight(30, context)),
-                      Container(
-                        height: UIConstants.fitToHeight(48, context),
-                        width: UIConstants.fitToWidth(160, context),
-                        child: RaisedButton(
-                          color: Color(0xff1386F0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                          onPressed: () => signup(),
-                          child: Text(
-                            'Sign Up',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18.0,
-                                letterSpacing: 0.32),
+                    ),
+                    SizedBox(height: UIConstants.fitToWidth(10, context)),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: UIConstants.fitToWidth(40, context),
+                          right: UIConstants.fitToWidth(40, context)),
+                      child: SizedBox(
+                        width: UIConstants.fitToWidth(280, context),
+                        child: _input(
+                          "Please enter Password",
+                          true,
+                          "Password",
+                          'Password',
+                          (value) {
+                            _password = value;
+                          },
+                          Icon(
+                            Icons.lock,
                           ),
                         ),
                       ),
-                    ]),
+                    ),
+                    SizedBox(height: UIConstants.fitToHeight(10, context)),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('Lat: ' + latitude),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.05),
+                        Text('Long: ' + longitude),
+                      ],
+                    ),
+                    SizedBox(height: UIConstants.fitToHeight(30, context)),
+                    Container(
+                      height: UIConstants.fitToHeight(48, context),
+                      width: UIConstants.fitToWidth(160, context),
+                      child: RaisedButton(
+                        color: Color(0xff1386F0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+                        onPressed: () => signup(),
+                        child: Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                            letterSpacing: 0.32,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               )
-            ]),
-      )),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

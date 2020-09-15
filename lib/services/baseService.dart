@@ -4,15 +4,15 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BaseService {
-  static const BASE_URI = "http://ec2-3-83-125-93.compute-1.amazonaws.com/api/";
+  static const BASE_URI = "http://ec2-54-165-254-77.compute-1.amazonaws.com/api/";
   static const AUTH_URI =
-      "http://ec2-3-83-125-93.compute-1.amazonaws.com/api/signin";
+      "http://ec2-54-165-254-77.compute-1.amazonaws.com/api/signin";
   static const USER_URI =
-      "http://ec2-3-83-125-93.compute-1.amazonaws.com/api/user";
+      "http://ec2-54-165-254-77.compute-1.amazonaws.com/api/user";
   static const CATEGORY_URI =
-      "http://ec2-3-83-125-93.compute-1.amazonaws.com/api/categories";
+      "http://ec2-54-165-254-77.compute-1.amazonaws.com/api/categories";
   static const ITEM_URI =
-      "http://ec2-3-83-125-93.compute-1.amazonaws.com/api/product/create/";
+      "http://ec2-54-165-254-77.compute-1.amazonaws.com/api/product/create/";
   // static const AUTH_URI = "http://192.168.43.116:3000/api/signin";
   // static const USER_URI = "http://192.168.43.116:3000/api/user";
   // static const CATEGORY_URI = "http://127.0.0.1:3000/api/categories";
