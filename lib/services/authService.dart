@@ -7,7 +7,11 @@ import 'package:zero_vendor/services/baseService.dart';
 class AuthService extends BaseService {
   static Map<String, dynamic> _authDetails;
   static const String authNamespace = "auth";
-  static const BASE_URI = "http://ec2-3-83-125-93.compute-1.amazonaws.com/api/";
+  static const BASE_URI = "http://192.168.1.5:3000/api/";
+  static const AUTH_URI = "http://192.168.1.5:3000/api/signin";
+  static const USER_URI = "http://192.168.1.5:3000/api/user";
+  static const CATEGORY_URI = "http://192.168.1.5:3000/api/categories";
+  static const ITEM_URI = "http://192.168.1.5:3000/api/product/create/";
 
   // ignore: missing_return
   static Future<http.Response> makeAuthenticatedRequest(String path,
