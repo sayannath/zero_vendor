@@ -34,13 +34,19 @@ class AuthService extends BaseService {
         case 'POST':
           body ??= {};
           return http.post(path, headers: sentHeaders, body: body);
+          break;
 
         case 'GET':
-          body ??= {};
           return http.get(path, headers: sentHeaders);
+          break;
 
+        case 'PUT':
+          return http.put(path, headers: sentHeaders, body: body);
+          break;
+
+        case 'DELETE':
+          return http.delete(path, headers: sentHeaders);
         default:
-          print("");
           return http.post(path, headers: sentHeaders, body: body);
       }
     } catch (err) {
