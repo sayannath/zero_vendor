@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:zero_vendor/common/ui_constants.dart';
-import 'package:zero_vendor/components/categoryCard.dart';
-import 'package:zero_vendor/models/Categories.dart';
-import 'package:zero_vendor/services/categoryService.dart';
+
+import 'package:zero_vendor/view/CategorySelect.dart';
 import 'package:zero_vendor/view/addItemPage.dart';
 
 class Inventory extends StatefulWidget {
@@ -95,12 +92,14 @@ class _InventoryState extends State<Inventory> {
             ),
           ),
           onPressed: () {
+
             // Navigator.push(
             //   context,
             //   MaterialPageRoute(
             //     builder: (context) => AddItem(),
             //   ),
             // );
+
           },
         ),
       ),

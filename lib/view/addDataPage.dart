@@ -85,7 +85,7 @@ class _AddDataPageState extends State<AddDataPage> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'Sign up',
+                      'Verify details',
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 24,

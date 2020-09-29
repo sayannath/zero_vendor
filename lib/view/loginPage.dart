@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zero_vendor/common/ui_constants.dart';
 import 'package:zero_vendor/services/authService.dart';
-import 'package:zero_vendor/view/addDataPage.dart';
+import 'package:zero_vendor/view/adddatapage.dart';
 import 'package:zero_vendor/view/signupPage.dart';
+import 'package:zero_vendor/view/step2.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -41,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
         if (auth['role'] == '1') {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (BuildContext context) {
-            return AddDataPage();
+            return Step2Reg();
           }), (Route<dynamic> route) => false);
         } else {
           scaffkey.currentState.showSnackBar(new SnackBar(
@@ -182,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                                               SignupPage()));
                                 },
                                 child: Padding(
-                                  padding: const EdgeInsets.all(6.0),
+                                  padding: const EdgeInsets.symmetric(horizontal:6.0,vertical: 10,),
                                   child: Text(
                                     "Don't have an account? Sign Up",
                                     style: TextStyle(

@@ -1,3 +1,4 @@
+
 // import 'dart:convert';
 // import 'dart:io';
 // import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@
 // //   stock:
 // //   photo:
 
+
 // class AddItem extends StatefulWidget {
 //   @override
 //   _AddItemState createState() => _AddItemState();
@@ -34,11 +36,13 @@
 //   String id;
 //   Map<String, dynamic> userdata;
 
+
 //   TextEditingController name = TextEditingController();
 //   TextEditingController desc = TextEditingController();
 //   TextEditingController price = TextEditingController();
 //   TextEditingController stock = TextEditingController();
 //   String catType = '5f4f4ac8fa2ecb66ff4b3d0f';
+
 
 //   @override
 //   void initState() {
@@ -104,6 +108,7 @@
 //       ),
 //     );
 //   }
+
 
 //   @override
 //   Widget build(BuildContext context) {
@@ -270,6 +275,7 @@
 //     );
 //   }
 // }
+
 
 // Widget tff(String hint, int m, TextEditingController tc, TextInputType ty) {
 //   return Padding(
